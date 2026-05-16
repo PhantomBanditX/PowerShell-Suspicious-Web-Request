@@ -1,6 +1,6 @@
 # 🚨 **PowerShell Suspicious Web Request**
 
-
+<img width="1100" alt="Image" src="https://github.com/user-attachments/assets/c04dfd26-a126-4989-a20f-c64825b41a2c" />
 
 ## 🛡️ **Create Alert Rule (PowerShell Suspicious Web Request)**
 
