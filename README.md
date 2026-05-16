@@ -23,22 +23,8 @@ Detecting such behavior is critical to identifying and disrupting an ongoing att
 ### 🔧 **Steps to Create the Alert Rule**
 
 #### 1️⃣ **Query Logs in Microsoft Defender**
-1. Open **Microsoft EDR**.
-2. Go to the KQL section and enter:
-```kql
-DeviceFileEvents
-| top 20 by Timestamp desc
-```
-```kql
-DeviceNetworkEvents
-| top 20 by Timestamp desc
-```
-```kql
-DeviceProcessEvents
-| top 20 by Timestamp desc
-```
-3. Locate suspicious activity, e.g., `powershell.exe` executing `Invoke-WebRequest`.
-4. Refine query for target device:
+1. Locate suspicious activity, e.g., `powershell.exe` executing `Invoke-WebRequest`.
+2. Refine query for target device:
    ```kql
    let TargetDevice = "windows-target-1";
    DeviceProcessEvents
@@ -48,7 +34,7 @@ DeviceProcessEvents
    ```
 ![Screenshot 2025-01-07 105629](https://github.com/user-attachments/assets/418f503e-ebab-4cb4-9541-8c1c30ccc56a)
 
-5. Verify payload detection. ✅
+3. Verify payload detection. ✅
 ```kql
    let TargetHostname = "windows-target-1"; // Replace with the name of your VM as it shows up in the logs
 let ScriptNames = dynamic(["eicar.ps1", "exfiltratedata.ps1", "portscan.ps1", "pwncrypt.ps1"]); // Add the name of the scripts that were downloaded
