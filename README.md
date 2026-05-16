@@ -26,13 +26,14 @@ Detecting such behavior is critical to identifying and disrupting an ongoing att
 1. Locate suspicious activity, e.g., `powershell.exe` executing `Invoke-WebRequest`.
 2. Refine query for target device:
    ```kql
-   let TargetDevice = "windows-target-1";
+   let TargetDevice = "windows-target-"; 
    DeviceProcessEvents
-   | where DeviceName == TargetDevice
+   | where DeviceName == TargetDevice 
    | where FileName == "powershell.exe"
-   | where ProcessCommandLine contains "Invoke-WebRequest"
+   | where InitiatingProcessCommandLine contains "Invoke-WebRequest"
+   | order by TimeGenerated
    ```
-![Screenshot 2025-01-07 105629](https://github.com/user-attachments/assets/418f503e-ebab-4cb4-9541-8c1c30ccc56a)
+<img width="1200" alt="Image" src="https://github.com/user-attachments/assets/366987ed-382b-45f4-9853-ea8b5bd83c11" /> 
 
 3. Verify payload detection. ✅
 ```kql
