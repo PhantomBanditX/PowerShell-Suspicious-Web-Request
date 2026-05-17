@@ -49,7 +49,7 @@ Detecting such behavior is critical to identifying and disrupting an ongoing att
    | summarize Count = count() by AccountName, DeviceName, FileName, ProcessCommandLine
 ```
 
-![Screenshot 2025-01-07 144444](https://github.com/user-attachments/assets/9520d3df-b646-4ce6-a72e-52e1eaedc3f4)
+<img width="1200" alt="Image" src="https://github.com/user-attachments/assets/b414f96b-e95e-4f9d-81a4-a6b26a5fbe9b" />
 
 
 #### 2️⃣ **Create Alert Rule in Microsoft Sentinel**
