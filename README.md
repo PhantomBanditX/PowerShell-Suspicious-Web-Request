@@ -13,10 +13,10 @@ Sometimes, malicious actors gain access to systems and attempt to download paylo
 
 Detecting such behavior is critical to identifying and disrupting an ongoing attack! 🕵️‍♀️
 
-### **Detection Pipeline Overview**
-1. 🖥️ Processes are logged via **Microsoft Defender for Endpoint** under the `DeviceProcessEvents` table.
-2. 📊 Logs are forwarded to **Log Analytics Workspace** and integrated into **Microsoft Sentinel (SIEM)**.
-3. 🛑 An alert rule is created in **Sentinel** to trigger when PowerShell downloads remote files.
+### **Components, Tools, and Technologies Employed**
+1. 🖥️ **Microsoft Defender for Endpoint**.
+2. 📊 **Microsoft Sentinel (SIEM)**.
+3. 🛑 An alert rule created in **Sentinel** to trigger when PowerShell downloads remote files.
 
 ---
 
