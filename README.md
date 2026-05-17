@@ -36,7 +36,7 @@ Detecting such behavior is critical to identifying and disrupting an ongoing att
 <img width="1200" alt="Image" src="https://github.com/user-attachments/assets/366987ed-382b-45f4-9853-ea8b5bd83c11" /> 
 <br><br>
 
-3. Verify payload detection. ✅
+3. Verify payload detection. 
 ```kql
    let TargetHostname = "windows-target-1"; 
    let ScriptNames = dynamic(["eicar.ps1", "portscan.ps1", "pwncrypt.ps1"]); 
