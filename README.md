@@ -75,7 +75,7 @@ DeviceProcessEvents
 4. Enable **Mitre ATT&CK Framework Categories** (Use ChatGPT to assist! 🤖).
 5. Save and activate the rule. 🎉
 
-![Screenshot 2025-01-07 131945](https://github.com/user-attachments/assets/2cb640e9-9471-4439-a545-e3395bd2fd16)
+<img width="1919" height="866" alt="Image" src="https://github.com/user-attachments/assets/e72893c7-d0c4-4b0e-9716-c24a001fa07f" />
 
 
 ---
@@ -91,7 +91,7 @@ Follow the **NIST 800-161: Incident Response Lifecycle**:
 1. **Validate Incident**:
    - Assign it to yourself and set the status to **Active** ✅.
 
-![Screenshot 2025-01-07 135609](https://github.com/user-attachments/assets/f1c4ba25-0a90-4924-86b9-1e87f25031f6)
+<img width="1000" alt="Image" src="https://github.com/user-attachments/assets/d41afa7d-36a9-4cab-a87f-3aa26e649ace" />
 
 2. **Investigate**:
    - Review logs and entity mappings 🗒️.
@@ -103,7 +103,7 @@ Follow the **NIST 800-161: Incident Response Lifecycle**:
      - `portscan.ps1`
      - `pwncrypt.ps1`
      - `eicar.ps1`
-     - `exfiltratedata.ps1`
+       
 3. Gather evidence:
    - Scripts downloaded and executed 🧪.
    - User admitted to downloading free software during the events.
