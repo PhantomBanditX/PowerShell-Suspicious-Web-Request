@@ -34,18 +34,19 @@ Detecting such behavior is critical to identifying and disrupting an ongoing att
    | order by TimeGenerated
    ```
 <img width="1200" alt="Image" src="https://github.com/user-attachments/assets/366987ed-382b-45f4-9853-ea8b5bd83c11" /> 
+<br><br>
 
 3. Verify payload detection. ✅
 ```kql
-   let TargetHostname = "windows-target-1"; // Replace with the name of your VM as it shows up in the logs
-let ScriptNames = dynamic(["eicar.ps1", "exfiltratedata.ps1", "portscan.ps1", "pwncrypt.ps1"]); // Add the name of the scripts that were downloaded
-DeviceProcessEvents
-| where DeviceName == TargetHostname // Comment this line out for MORE results
-| where FileName == "powershell.exe"
-| where ProcessCommandLine contains "-File" and ProcessCommandLine has_any (ScriptNames)
-| order by TimeGenerated
-| project TimeGenerated, AccountName, DeviceName, FileName, ProcessCommandLine
-| summarize Count = count() by AccountName, DeviceName, FileName, ProcessCommandLine
+   let TargetHostname = "windows-target-1"; 
+   let ScriptNames = dynamic(["eicar.ps1", "portscan.ps1", "pwncrypt.ps1"]); 
+   DeviceProcessEvents
+   | where DeviceName == TargetHostname 
+   | where FileName == "powershell.exe"
+   | where ProcessCommandLine contains "-File" and ProcessCommandLine has_any (ScriptNames)
+   | order by TimeGenerated
+   | project TimeGenerated, AccountName, DeviceName, FileName, ProcessCommandLine
+   | summarize Count = count() by AccountName, DeviceName, FileName, ProcessCommandLine
 ```
 
 ![Screenshot 2025-01-07 144444](https://github.com/user-attachments/assets/9520d3df-b646-4ce6-a72e-52e1eaedc3f4)
@@ -59,11 +60,12 @@ DeviceProcessEvents
    - **Description**: Detects PowerShell downloading remote files 📥.
    - **KQL Query**:
      ```kql
-     let TargetDevice = "windows-target-1";
+     let TargetDevice = "windows-target-"; 
      DeviceProcessEvents
-     | where DeviceName == TargetDevice
+     | where DeviceName == TargetDevice 
      | where FileName == "powershell.exe"
-     | where ProcessCommandLine contains "Invoke-WebRequest"
+     | where InitiatingProcessCommandLine contains "Invoke-WebRequest"
+     | order by TimeGenerated
      ```
    - **Run Frequency**: Every 4 hours 🕒
    - **Lookup Period**: Last 24 hours 📅
@@ -72,8 +74,8 @@ DeviceProcessEvents
    - **Account**: `AccountName`
    - **Host**: `DeviceName`
    - **Process**: `ProcessCommandLine`
-4. Enable **Mitre ATT&CK Framework Categories** (Use ChatGPT to assist! 🤖).
-5. Save and activate the rule. 🎉
+4. Enable **Mitre ATT&CK Framework Categories** 
+5. Save and activate the rule. ✅
 
 <img width="1919" height="866" alt="Image" src="https://github.com/user-attachments/assets/e72893c7-d0c4-4b0e-9716-c24a001fa07f" />
 
@@ -95,10 +97,7 @@ Follow the **NIST 800-161: Incident Response Lifecycle**:
 
 2. **Investigate**:
    - Review logs and entity mappings 🗒️.
-   - Check PowerShell commands:
-     ```plaintext
-     powershell.exe -ExecutionPolicy Bypass -Command Invoke-WebRequest -Uri <URL> -OutFile <Path>
-     ```
+     
    - Identify downloaded scripts:
      - `portscan.ps1`
      - `pwncrypt.ps1`
@@ -120,7 +119,7 @@ Follow the **NIST 800-161: Incident Response Lifecycle**:
 
 ### 4️⃣ **Post-Incident Activities** 📝
 1. Document findings and lessons learned 🖊️.
-   - Scripts executed: `pwncrypt.ps1` , `exfiltratedata.ps1` , `portscan.ps1` , `eicar.ps1` .
+   - Scripts executed: `pwncrypt.ps1` , `portscan.ps1` , `eicar.ps1` .
    - Account involved: `system-user`.
 2. Update policies:
    - Restrict PowerShell usage 🚫.
@@ -134,6 +133,6 @@ Follow the **NIST 800-161: Incident Response Lifecycle**:
 | **Metric**                     | **Value**                        |
 |---------------------------------|-----------------------------------|
 | **Affected Device**            | `windows-target-1`               |
-| **Suspicious Commands**        | 4                                |
-| **Scripts Downloaded**         | `portscan.ps1`, `pwncrypt.ps1`, `eicar.ps1`, `exfiltratedata.ps1`   |
+| **Suspicious Commands**        | 3                                |
+| **Scripts Downloaded**         | `portscan.ps1`, `pwncrypt.ps1`, `eicar.ps1`  |
 | **Incident Status**            | Resolved                         |
