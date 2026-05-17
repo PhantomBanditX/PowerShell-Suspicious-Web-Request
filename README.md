@@ -38,7 +38,7 @@ Detecting such behavior is critical to identifying and disrupting an ongoing att
 
 3. Verify payload detection. 
 ```kql
-   let TargetHostname = "windows-target-1"; 
+   let TargetHostname = "windows-target-"; 
    let ScriptNames = dynamic(["eicar.ps1", "portscan.ps1", "pwncrypt.ps1"]); 
    DeviceProcessEvents
    | where DeviceName == TargetHostname 
@@ -132,7 +132,7 @@ Follow the **NIST 800-161: Incident Response Lifecycle**:
 ## 🎯 **Incident Summary**
 | **Metric**                     | **Value**                        |
 |---------------------------------|-----------------------------------|
-| **Affected Device**            | `windows-target-1`               |
+| **Affected Device**            | `windows-target-`               |
 | **Suspicious Commands**        | 3                                |
 | **Scripts Downloaded**         | `portscan.ps1`, `pwncrypt.ps1`, `eicar.ps1`  |
 | **Incident Status**            | Resolved                         |
